@@ -19,4 +19,7 @@
     "lodash": "^4.17.21",
     "mongoose": "^6.4.5"
   }
+  {
+   "stack": "heroku-22"
+}
 }
