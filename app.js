@@ -86,6 +86,11 @@ app.get("/", function(req, res) {
 //DYNAMIC ROUTE
 app.get("/:customListName", function(req, res) {
   const customListName = _.capitalize(req.params.customListName); //using lodash to capitalize first letter always
+
+  if (req.params.customList === "Robots.txt" || req.params.customListe === "Favicon.ico") {
+    next();
+  }
+
   //console.log(customListName); //to log what user enters after forward slash in URL
   List.findOne({
     name: customListName
@@ -106,10 +111,7 @@ app.get("/:customListName", function(req, res) {
       } else {
         console.log(customListName + " exists in the list!")
 
-        res.render("list", {
-          listTitle: foundList.name,
-          newListItems: foundList.items
-        })
+        res.render("list", {listTitle: foundList.name, newListItems: foundList.items});
       }
     }
   });
